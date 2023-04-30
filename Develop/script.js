@@ -29,9 +29,10 @@ let options = {
 function generatePassword() {
   const passwordLength = window.prompt("What length would you like your password to be? \nChoose a length between 8 and 128 characters.");
   if (passwordLength >= minLength && passwordLength <=maxLength){
+    userInput = userInput.concat(passwordLength);
     console.log(passwordLength);
-  } else if (!passwordLength >= minLength || !passwordLength <=maxLength) {
-    window.prompt("Try again. Choose the length of your password between 8 and 128 characters.");
+  // } else if (!passwordLength >= minLength || !passwordLength <=maxLength) {
+    // window.prompt("Try again. Choose the length of your password between 8 and 128 characters.");
   } else return;
 
   const askSpecial = window.confirm("Please confirm the use of special characters in your password.");
@@ -54,16 +55,13 @@ function generatePassword() {
 
   const askNumbers = window.confirm("Please confirm the use of numbers in your password."); 
    if (askNumbers) {
-    userInput = userInput.concat(options.lowerCase);
+    userInput = userInput.concat(options.numbers);
     console.log(userInput);
    } else ;
 
-  
- for (let i = 0; i < passwordLength; i++){
-  userInput = userInput + i;
-  console.log(userInput);
-}
+for (let i = 0; i < passwordLength; i++) {
 
+let randomPass = userInput[Math.floor(Math.random() * userInput.length)]; 
+console.log(randomPass);
 }
-
-  // how to use the input password length to assign multiple random items from arrays
+}
