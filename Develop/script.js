@@ -14,10 +14,14 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//Created a Max and Min length for password
 let minLength = 8;
 let maxLength = 128;
+
+//Created an array for the users input
 let userInput = []
 
+// Added array options for user to choose from
 let options = {
   numbers: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
   special: ['!','#','$','%','&','(',')','*','+','-','/',':',';','=','?','@','[',']','^','_','{','|','}','~'],
@@ -25,12 +29,12 @@ let options = {
   lowerCase: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
 };
 
+//  Created a function for user to input their password options to add to the array
 function generatePassword() {
   const passwordLength = window.prompt("What length would you like your password to be? \nChoose a length between 8 and 128 characters.");
   if (passwordLength >= minLength && passwordLength <=maxLength){
     userInput = userInput.concat(passwordLength);
     console.log(passwordLength);
-  
   } else return;
 
   const askSpecial = window.confirm("Please confirm the use of special characters in your password.");
@@ -57,8 +61,10 @@ function generatePassword() {
     console.log(userInput);
    } else ;
 
+  //  Loop to grab user input selected amount of times
 for (let i = 0; i < passwordLength; i++) {
 
+// pulls from selection randomly 
 let randomPass = userInput[Math.floor(Math.random() * userInput.length)]; 
 console.log(randomPass);
 }
