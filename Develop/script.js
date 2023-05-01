@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -8,7 +9,6 @@ function writePassword() {
 
 
   passwordText.value = password;
-
 } 
 
 // Add event listener to generate button
@@ -19,7 +19,7 @@ let minLength = 8;
 let maxLength = 128;
 
 //Created an array for the users input
-let userInput = []
+let characterTypes = []
 
 // Added array options for user to choose from
 let options = {
@@ -32,40 +32,51 @@ let options = {
 //  Created a function for user to input their password options to add to the array
 function generatePassword() {
   const passwordLength = window.prompt("What length would you like your password to be? \nChoose a length between 8 and 128 characters.");
-  if (passwordLength >= minLength && passwordLength <=maxLength){
-    userInput = userInput.concat(passwordLength);
+  if (passwordLength >= minLength && passwordLength <= maxLength){
     console.log(passwordLength);
-  } else return;
-
+  } else {
+    alert("Please try again!"); 
+    return;
+  } 
+  
   const askSpecial = window.confirm("Please confirm the use of special characters in your password.");
   if (askSpecial) {
-    userInput = userInput.concat(options.special);
-    console.log(userInput);
+    characterTypes = characterTypes.concat(options.special);
+    console.log(characterTypes);
   } else ;
   
   const askUpperCase = window.confirm("Please confirm the use of UPPERCASE letters in your password.");
    if (askUpperCase) {
-      userInput = userInput.concat(options.upperCase);
-      console.log(userInput);
+    characterTypes = characterTypes.concat(options.upperCase);
+    console.log(characterTypes);
    } else ;
  
   const askLowerCase = window.confirm("Please confirm the use of lowercase letters in your password.");
    if (askLowerCase) {
-    userInput = userInput.concat(options.lowerCase);
-    console.log(userInput);
+    characterTypes = characterTypes.concat(options.lowerCase);
+    console.log(characterTypes);
    } else ;
 
   const askNumbers = window.confirm("Please confirm the use of numbers in your password."); 
    if (askNumbers) {
-    userInput = userInput.concat(options.numbers);
-    console.log(userInput);
+    characterTypes = characterTypes.concat(options.numbers);
+    console.log(characterTypes);
    } else ;
 
-  //  Loop to grab user input selected amount of times
+let randomPassarr = []
+
+//  Loop to grab value of criteria selected amount of times
 for (let i = 0; i < passwordLength; i++) {
 
-// pulls from selection randomly 
-let randomPass = userInput[Math.floor(Math.random() * userInput.length)]; 
-console.log(randomPass);
+// pulls from characterTypes selection randomly and adds password to page
+let randomCharacter = characterTypes[Math.floor(Math.random() * characterTypes.length)]; 
+console.log(randomCharacter);
+randomPassarr.push(randomCharacter);
 }
-}
+
+let randomPass = randomPassarr.join("");
+
+characterTypes = [];
+
+return randomPass;
+};
